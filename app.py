@@ -40,7 +40,7 @@ def crearMedicionr():
     mediciones = {'Fecha': fecha, 'Origen': origen, 'Valor': valor,
             'CodigoSensor': codigoSensor, 'Observacion': observacion}
 
-    requests.post('http://127.0.0.1:8000/listarMediciones', json=mediciones)
+    requests.post('https://api-evergreenadiazc.azurewebsites.net/listarMediciones', json=mediciones)
 
     #medicionesV.append(mediciones)
     #mediciones_list.append(mediciones)
@@ -50,7 +50,7 @@ def crearMedicionr():
 
 @app.route('/listarMediciones', methods=['GET'])
 def listarMediciones():
-    mediciones_list = requests.get('http://127.0.0.1:8000/listarMediciones').json()
+    mediciones_list = requests.get('https://api-evergreenadiazc.azurewebsites.net/listarMediciones').json()
     return render_template('listarMediciones.html', mediciones=mediciones_list)
 
 @app.route('/guardarMedicion', methods=['POST'])
@@ -59,7 +59,7 @@ def guardarMedicion():
     
     medicion['valor'] = int(medicion['precio'])
     mediciones_list.append(medicion)
-    requests.post('http://127.0.0.1:8000/listarMediciones',json=medicion)
+    requests.post('https://api-evergreenadiazc.azurewebsites.net/listarMediciones',json=medicion)
   
     
     return render_template('listarMediciones.html', mediciones=mediciones_list)
